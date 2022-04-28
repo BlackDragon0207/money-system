@@ -32,7 +32,6 @@ module.exports = {
             }
         }        
                    if(rdmsg === args[0]) {
-                            setTimeout (() => {
                             const embed2 = new Discord.MessageEmbed()
                             .setAuthor(`😋 ${user.user.username}님 승리!`, user.user.displayAvatarURL({ dtnamic: true}))
                             .setTimestamp()
@@ -41,10 +40,8 @@ module.exports = {
                             .setDescription(`💰 배팅하신 금액인 ${args[1]}원의 2배를 얻으셨습니다!`)   
                             message.channel.send(embed2)
                             db.get(`wallet_${user.id}`)
-                            db.add(`wallet_${user.id}`, args[1] * 2)  
-                            }, 1000)
+                            await db.add(`wallet_${user.id}`, args[1] * 2)  
                 } else {          
-                            setTimeout (() => {
                                 const embed3 = new Discord.MessageEmbed()
                                 .setAuthor(`😥 ${user.user.username}님 패배!`, user.user.displayAvatarURL({ dtnamic: true}))
                                 .setTimestamp()
@@ -53,8 +50,7 @@ module.exports = {
                                 .setDescription(`💰 배팅하신 금액인 ${args[1]}원의 2배를 잃으셨습니다!`)   
                                 message.channel.send(embed3)
                                 db.get(`wallet_${user.id}`)
-                                db.add(`wallet_${user.id}`, args[1] * -2)  
-                                }, 1000)
+                                await db.add(`wallet_${user.id}`, args[1] * -2)  
                         }
     }
    
