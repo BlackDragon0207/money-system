@@ -16,7 +16,7 @@ module.exports = {
     } else {
         let reward = 500
         let currentBalance = await db.get(`wallet_${message.author.id}`)
-        message.channel.send(`${reward.toLocaleString()}돈을 지급 받으셨습니다.`)
+        message.channel.send(`${reward.toLocaleString()}원을 지급 받으셨습니다.`)
    
         db.get(`wallet_${message.author.id}`)
         await db.set(`wallet_${message.author.id}`, currentBalance + reward)
